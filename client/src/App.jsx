@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
@@ -6,16 +6,22 @@ import PublicFeed from "./pages/PublicFeed";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+
+  // Ye routes me Navbar hide karna hai
+  const hideNavbarRoutes = ["/", "/signup"];
+
   return (
-    <Router>
-      <Navbar />
+    <>
+      {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
       <div className="p-4">
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
-          {/* Protected routes */}
+          {/* Protected Routes */}
           <Route
             path="/dashboard"
             element={
@@ -35,6 +41,14 @@ function App() {
           />
         </Routes>
       </div>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

@@ -5,31 +5,24 @@ function RecipeForm({ fetchRecipes }) {
   const [title, setTitle] = useState("");
   const [calories, setCalories] = useState("");
 
-  // debug: check what prop actually aaya
-  // open browser console and dekho output
-//   console.log("RecipeForm props: fetchRecipes =", fetchRecipes, " typeof:", typeof fetchRecipes);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.post(
+      await axios.post(
         "http://localhost:5000/api/recipes",
         { title, calories: Number(calories) },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // safe call: agar parent ne function pass kiya hai tabhi call karo
       if (typeof fetchRecipes === "function") {
         await fetchRecipes();
-      } else {
-        console.warn("fetchRecipes is not a function — skipping refresh");
       }
 
       setTitle("");
       setCalories("");
     } catch (err) {
-      console.error("Recipe Add Error (from RecipeForm):", err.response?.data || err.message);
+      console.error("Recipe Add Error:", err.response?.data || err.message);
       alert("Recipe add failed ❌ — check console for details");
     }
   };
@@ -53,7 +46,9 @@ function RecipeForm({ fetchRecipes }) {
         onChange={(e) => setCalories(e.target.value)}
         required
       />
-      <button className="bg-green-500 text-white px-4 py-2 rounded">Add Recipe</button>
+      <button className="bg-green-500 text-white px-4 py-2 rounded">
+        Add Recipe
+      </button>
     </form>
   );
 }
