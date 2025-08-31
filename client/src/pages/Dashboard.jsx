@@ -11,7 +11,7 @@ function Dashboard() {
   const fetchRecipes = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/recipes", {
+      const res = await axios.get("https://recipe-task-heckathon.vercel.app/api/recipes", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRecipes(res.data);
@@ -27,7 +27,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/recipes/${id}`, {
+      await axios.delete(`https://recipe-task-heckathon.vercel.app/api/recipes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchRecipes();
@@ -43,7 +43,7 @@ function Dashboard() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5000/api/recipes/${recipe._id}`,
+        `https://recipe-task-heckathon.vercel.app/api/recipes/${recipe._id}`,
         { title: newTitle, calories: Number(newCalories) },
         { headers: { Authorization: `Bearer ${token}` } }
       );

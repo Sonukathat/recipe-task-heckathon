@@ -11,7 +11,7 @@ function RecipeForm({ fetchRecipes }) {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:5000/api/recipes",
+        "https://recipe-task-heckathon.vercel.app/api/recipes",
         { title, calories: Number(calories) },
         { headers: { Authorization: `Bearer ${token}` } }
       );

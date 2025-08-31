@@ -9,7 +9,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/auth/signup", {
+      await axios.post("https://recipe-task-heckathon.vercel.app/api/auth/signup", {
         name, email, password
       });
       alert("Signup Successful 🎉 Now login");

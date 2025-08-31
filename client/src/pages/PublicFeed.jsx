@@ -5,7 +5,7 @@ function PublicFeed() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/recipes/public")
+    axios.get("https://recipe-task-heckathon.vercel.app/api/recipes/public")
       .then(res => setRecipes(res.data))
       .catch(err => console.log(err));
   }, []);
