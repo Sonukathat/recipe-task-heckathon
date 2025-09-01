@@ -11,7 +11,7 @@ function Dashboard() {
   const fetchRecipes = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("https://recipe-task-heckathon-1.onrender.com/api/recipes", {
+      const res = await axios.get("https://recipe-task-heckathon-1.onrender.com/api/recipes/get", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRecipes(res.data);
