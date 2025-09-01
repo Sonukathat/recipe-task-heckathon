@@ -8,7 +8,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://recipe-task-heckathon-1.onrender.com/api/auth/login", {
+      const res = await axios.post("https://recipe-task-heckathon.vercel.app/api/auth/login", {
         email, password
       });
       localStorage.setItem("token", res.data.token);
