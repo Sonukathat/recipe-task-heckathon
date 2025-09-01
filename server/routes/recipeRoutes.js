@@ -5,7 +5,7 @@ import authMiddleware from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 // ✅ Create Recipe
-router.post("/", authMiddleware, async (req, res) => {
+router.post("/create", authMiddleware, async (req, res) => {
   try {
     const recipe = new Recipe({
       title: req.body.title,
@@ -20,7 +20,7 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 // ✅ Get All Recipes (Logged in user)
-router.get("/", authMiddleware, async (req, res) => {
+router.get("/get", authMiddleware, async (req, res) => {
   try {
     const recipes = await Recipe.find({ user: req.user });
     res.json(recipes);
